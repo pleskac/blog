@@ -3,3 +3,9 @@ body {
 	background-color: black;
 	font-family: Helvetica, sans-serif;
 }
+
+
+img {
+   height: auto;
+   width: 100%;
+}
