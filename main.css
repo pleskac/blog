@@ -6,6 +6,9 @@ body {
 	margin-right: auto;
 	width: 100%;
 	max-width:1024px;
+	font-weight: 100;
+	font-color: #E8E8E8;
+	font-size: 14px;
 }
 
 
@@ -25,5 +28,6 @@ h1{
         margin-right: auto;
 	font-weight: 100;
 	text-align:center;
-
+	font-color: #F0F0F0;
+	font-size: 300%;
 }
