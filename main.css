@@ -32,22 +32,34 @@ h1{
 	font-size: 300%;
 }
 
+.container {
+	overflow:visible;
+}
+
+.fade_image{
+
+}
+
 .fade {
     display:inline-block;
     background:white;
-}
-
-.fade_image {
+    height:200px;  
+    width:1024px;
+    overflow-x:hidden;
+    overflow:hidden;
+    margin-bottom:-200px;   
+    position:relative;
+    bottom:200px; 
     -moz-transition: all 1s; 
     -webkit-transition: all 1s;  
     -ms-transition: all 1s;  
     -o-transition: all 1s;  
     transition: all 1s; 
-    opacity:1;
-    filter:alpha(opacity=100);
+    opacity:0;
+    filter:alpha(opacity=0);
 }
 
-.fade_image:hover {
+.fade:hover {
     opacity:0.2;
     filter:alpha(opacity=20);
 }
