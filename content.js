@@ -4,8 +4,8 @@ $(document).ready(function () {
 			image_urls = JSON.parse(data);
 			jQuery.each(image_urls, function(){
 				var imageURL = resizeToLarge(this.guid, this.meta_value);
-				
-				var imageString = '<div class="caption">';
+				var height = getImageHeight(imageURL);
+				var imageString = '<div class="caption" style="height:' + height + '">';
 				imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
 				if(this.post_excerpt){
 					imageString += '<span>' + this.post_excerpt + '</span>';
@@ -27,4 +27,14 @@ function resizeToLarge(uri, jibberish){
 		return uri + imageName;
 	}
 	return uri;
+}
+
+function getImageHeight(url){
+	var pattern = new RegExp('x(\\d+)');
+	var match = url.toString().match(pattern);
+	if(match != null){
+		return match[1];
+	}
+	return 23;
+
 }
