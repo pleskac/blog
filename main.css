@@ -1,11 +1,13 @@
 body {
+	margin:0px;
+	padding: 0px;
 	color: white;
 	background-color: black;
 	font-family: Helvetica, sans-serif;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width:1024px;
+	/*max-width:1024px;*/
 	font-weight: 100;
 	font-color: #E8E8E8;
 	font-size: 14px;
@@ -22,13 +24,34 @@ img {
 }
 
 h1{
-	size:16;
+	opacity:0.5;
 	margin-left: auto;
         margin-right: auto;
-	font-weight: 100;
+	position:relative;
+	margin-top:-5px;
+	font-weight: 900;
 	text-align:center;
-	font-color: #F0F0F0;
-	font-size: 300%;
+	font-color: rgba(255,255,255,0.5);
+	font-size: 900%;
+	
+}
+
+div.header{
+	padding:0px;
+	overflow:hidden;
+	height:150px;
+	width: 100%;
+	background-image: url(bg_bw.jpg);
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+
+div.content{
+	margin-right:auto;
+	margin-left:auto;
+	max-width:1024px;
 }
 
 div.clear { 

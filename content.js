@@ -5,7 +5,7 @@ $(document).ready(function () {
 			jQuery.each(image_urls, function(){
 				var imageURL = resizeToLarge(this.guid, this.meta_value);
 				var height = getImageHeight(imageURL);
-				var imageString = '<div class="caption" style="height:' + height + '">';
+				var imageString = '<div class="caption" style="height:' + height + 'px">';
 				imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
 				if(this.post_excerpt){
 					imageString += '<span>' + this.post_excerpt + '</span>';
