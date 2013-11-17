@@ -1,0 +1,3 @@
+== /blog ==
+
+My wordpress replacement.
