@@ -49,6 +49,7 @@ div.header{
 }
 
 div.content{
+	padding-top:20px;
 	margin-right:auto;
 	margin-left:auto;
 	max-width:1024px;
