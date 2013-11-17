@@ -1,3 +1,3 @@
-== /blog ==
+#/blog
 
 My wordpress replacement.
