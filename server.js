@@ -2,7 +2,7 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'rootroot',
+  password : 'rootroot', //not a secret, lol
   database : 'wordpress',
 });
 
