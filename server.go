@@ -21,7 +21,13 @@ type Post struct {
 const postId = "postId"
 
 func main() {
-	go endpoint()
+	router := mux.NewRouter()
+        r := router.Host("{domain:pleskac.org|api.pleskac.org|localhost}").Subrouter()
+
+        r.HandleFunc("/blog/{"+postId+":[0-9]+}", PostHandler)
+        http.ListenAndServe(":1337", r)
+	fmt.Println("shouldn't be here")
+	//go endpoint()
 }
 
 func Connect() z_mysql.Conn {
