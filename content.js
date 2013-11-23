@@ -6,7 +6,7 @@ $(document).ready(function () {
 	                function(data){
 				posts = JSON.parse(data);
 				jQuery.each(posts, function(){
-					var link = '<a href="/' + this.id + '" >' + this.post_title + '</a></ br>';
+					var link = '<a href="http://pleskac.org:1337/' + this.id + '" >' + this.post_title + '</a><br />';
 					$('#post_content').append(link);
 				});
 		});
