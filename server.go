@@ -45,18 +45,22 @@ func Connect() z_mysql.Conn {
 //	/blog/{ID}		specific post
 func endpoint() {
 	router := mux.NewRouter()
-	r := router.Host("{domain:pleskac.org|api.pleskac.org|localhost}").Subrouter()
-
+	r := router.Host("{domain:pleskac.org|www.pleskac.org|localhost}").Subrouter()
+	r.HandleFunc("/blog", TestHandler)
 	r.HandleFunc("/blog/{"+postId+":[0-9]+}", PostHandler)
 	fmt.Println("Router:", r)
 	http.ListenAndServe(":1337", r)
+}
+
+func TestHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Test worked!")
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
 	// allow cross domain AJAX requests
 	w.Header().Set("Access-Control-Allow-Origin", "http://pleskac.org")
 	vars := mux.Vars(r)
-	post := vars[postId]
+	post := vars["id"]
 	fmt.Println(post)
 
 	output := getPost(post)
