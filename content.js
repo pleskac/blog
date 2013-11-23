@@ -1,5 +1,17 @@
 $(document).ready(function () {
-	jQuery.ajax("http://pleskac.org:1337/5439").done(
+	jQuery.ajax("http://pleskac.org:1337/blog").done(
+                function(data){
+			posts = JSON.parse(data);
+			jQuery.each(posts, function(){
+				var link = '<a href="pleskac.org/' + this.id + '" >' + this.post_title + '</a>';
+				$('#post_content').append(link);
+			});
+	});
+
+
+
+
+	/*jQuery.ajax("http://pleskac.org:1337/5439").done(
                 function(data){
 			image_urls = JSON.parse(data);
 			jQuery.each(image_urls, function(){
@@ -13,7 +25,7 @@ $(document).ready(function () {
 				imageString += '</div>';
 				$('#post_content').append(imageString);
 			});
-	});
+	});*/
 });
 
 function resizeToLarge(uri, jibberish){
