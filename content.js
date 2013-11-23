@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	var pathname = window.location.pathname;
 
-	if(pathname.endsWith("blog")){
+	if(pathname = "/blog/"){
 		jQuery.ajax("http://pleskac.org:1337/blog").done(
 	                function(data){
 				posts = JSON.parse(data);
