@@ -1,32 +1,43 @@
 $(document).ready(function () {
-	jQuery.ajax("http://pleskac.org:1337/blog").done(
-                function(data){
-			posts = JSON.parse(data);
-			jQuery.each(posts, function(){
-				var link = '<a href="pleskac.org/' + this.id + '" >' + this.post_title + '</a></ br>';
-				$('#post_content').append(link);
-			});
-	});
+	var pathname = window.location.pathname;
 
-
-
-
-	/*jQuery.ajax("http://pleskac.org:1337/5439").done(
-                function(data){
-			image_urls = JSON.parse(data);
-			jQuery.each(image_urls, function(){
-				var imageURL = resizeToLarge(this.guid, this.meta_value);
-				var height = getImageHeight(imageURL);
-				var imageString = '<div class="caption" style="height:' + height + 'px">';
-				imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
-				if(this.post_excerpt){
-					imageString += '<span>' + this.post_excerpt + '</span>';
-				}
-				imageString += '</div>';
-				$('#post_content').append(imageString);
-			});
-	});*/
+	if(pathname.endsWith("blog")){
+		jQuery.ajax("http://pleskac.org:1337/blog").done(
+	                function(data){
+				posts = JSON.parse(data);
+				jQuery.each(posts, function(){
+					var link = '<a href="/' + this.id + '" >' + this.post_title + '</a></ br>';
+					$('#post_content').append(link);
+				});
+		});
+	}else{
+		var url = getURL(pathname)
+		 jQuery.ajax(url).done(
+	                function(data){
+				image_urls = JSON.parse(data);
+				jQuery.each(image_urls, function(){
+					var imageURL = resizeToLarge(this.guid, this.meta_value);
+					var height = getImageHeight(imageURL);
+					var imageString = '<div class="caption" style="height:' + height + 'px">';
+					imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
+					if(this.post_excerpt){
+						imageString += '<span>' + this.post_excerpt + '</span>';
+					}
+					imageString += '</div>';
+					$('#post_content').append(imageString);
+				});
+		});
+	}
 });
+
+function getURL(url){
+	var pattern = new RegExp('([0-9]+)');
+	var match = url.toString().match(pattern);
+	if(match != null){
+		return 'http://pleskac.org:1337/blog/' + match[0];
+	}
+	return '';
+}
 
 function resizeToLarge(uri, jibberish){
 	var pattern = new RegExp('((s:21:").+jpg")');
