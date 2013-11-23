@@ -25,7 +25,7 @@ my_http.createServer(function(request,response){
 		sql +=    'WHERE wp_posts.post_parent = ' + postInt + ' ';
 		sql +=    'AND wp_posts.post_type = "attachment" '
 		sql +=    'AND wp_postmeta.meta_key = "_wp_attachment_metadata"';
-		
+
 		var query = connection.query(sql.toString(), function(err, results){
 			if(!err){
 				response.setHeader("Access-Control-Allow-Origin", "http://pleskac.org");
@@ -38,7 +38,7 @@ my_http.createServer(function(request,response){
 		});
     } else if(my_path = "/blog"){
     	//Title page
-    	var sql = 'SELECT id,post_type FROM wp_posts WHERE post_type = "post"';
+    	var sql = 'SELECT id,post_title FROM wp_posts WHERE post_type = "post"';
     	var query = connection.query(sql.toString(), function(err, results){
 			if(!err){
 				response.setHeader("Access-Control-Allow-Origin", "http://pleskac.org");
