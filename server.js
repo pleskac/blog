@@ -22,7 +22,7 @@ my_http.createServer(function(request,response){
 		sql +=	  'FROM wp_posts ';
 		sql +=    'LEFT JOIN wp_postmeta ';
 		sql +=    'ON wp_posts.ID = wp_postmeta.post_id ';
-		sql +=    'WHERE wp_posts.post_parent = ' + postInt + ' ';
+		sql +=    'WHERE wp_posts.post_parent = ' + postInt + ' AND wp_posts.post_status = "publish" ';
 		sql +=    'AND wp_posts.post_type = "attachment" '
 		sql +=    'AND wp_postmeta.meta_key = "_wp_attachment_metadata"';
 
