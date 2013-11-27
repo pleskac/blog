@@ -43,7 +43,7 @@ func endpoint() {
 	router := mux.NewRouter()
 	r := router.Host("{domain:pleskac.org|www.pleskac.org|localhost}").Subrouter()
 	r.HandleFunc("/blog", TestHandler)
-	r.HandleFunc("/blog/{"+postId+":[0-9]+}", PostHandler)
+	r.HandleFunc("/{"+postId+":[0-9]+}", PostHandler)
 	fmt.Println("Router:", r)
 	http.ListenAndServe(":1337", r)
 }
