@@ -21,12 +21,8 @@ type Post struct {
 const postId = "postId"
 
 func main() {
-	go endpoint()
-	fmt.Println("Started endpoint.go. Blocking")
-
-	for {
-
-	}
+	fmt.Println("Starting endpoint.go. Will block")
+	endpoint()
 }
 
 func Connect() z_mysql.Conn {
