@@ -11,11 +11,16 @@ import (
 	"net/http"
 )
 
-type Post struct {
+type Picture struct {
 	Guid         string
 	Post_excerpt string
 	Id           string
 	Meta_value   string
+}
+
+type Post struct {
+	Id         string
+	Post_title string
 }
 
 const postId = "postId"
@@ -42,14 +47,19 @@ func Connect() z_mysql.Conn {
 func endpoint() {
 	router := mux.NewRouter()
 	r := router.Host("{domain:pleskac.org|www.pleskac.org|localhost}").Subrouter()
-	r.HandleFunc("/blog", TestHandler)
+	r.HandleFunc("/blog", HomeHandler)
 	r.HandleFunc("/{"+postId+":[0-9]+}", PostHandler)
 	fmt.Println("Router:", r)
 	http.ListenAndServe(":1337", r)
 }
 
-func TestHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Test worked!")
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://pleskac.org")
+
+	output := getAllPosts()
+
+	enc := json.NewEncoder(w)
+	enc.Encode(output)
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
@@ -60,13 +70,32 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	post := vars[postId]
 	fmt.Println(post)
 
-	output := getPost(post)
+	output := getPictures(post)
 
 	enc := json.NewEncoder(w)
 	enc.Encode(output)
 }
 
-func getPost(p string) []Post {
+func getAllPosts() []Post {
+	db := Connect()
+	defer db.Close()
+	query := "SELECT id,post_title FROM wp_posts WHERE post_type = 'post'"
+
+	rows, _, err := db.Query(query)
+	if err != nil {
+		panic(err)
+	}
+
+	var allPosts []Post
+
+	for _, row := range rows {
+		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
+	}
+
+	return allPosts
+}
+
+func getPictures(p string) []Picture {
 	db := Connect()
 	defer db.Close()
 
@@ -84,11 +113,11 @@ func getPost(p string) []Post {
 		panic(err)
 	}
 
-	var myPost []Post
+	var pictures []Picture
 
 	for _, row := range rows {
-		myPost = append(myPost, Post{row.Str(0), row.Str(1), row.Str(2), row.Str(3)})
+		pictures = append(pictures, Picture{row.Str(0), row.Str(1), row.Str(2), row.Str(3)})
 	}
 
-	return myPost
+	return pictures
 }
