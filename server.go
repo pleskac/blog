@@ -61,7 +61,8 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(output) //THIS WORKS
 
 	enc := json.NewEncoder(w)
-	enc.Encode(output) //WHY WONT YOU RETURN???
+	err := enc.Encode(output) //WHY WONT YOU RETURN???
+	fmt.Println(err)
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
