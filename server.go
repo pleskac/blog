@@ -91,7 +91,8 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
-		allPosts = append(allPosts, Post{row.Int(0), row.Str(1)})
+		title := "\"" + row.Str(1) + "\""
+		allPosts = append(allPosts, Post{row.Int(0), title})
 	}
 
 	return allPosts
