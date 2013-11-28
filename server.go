@@ -43,7 +43,8 @@ func Connect() z_mysql.Conn {
 }
 
 //JSON endpoints:
-//	/blog/{ID}		specific post
+//	/{ID}		specific post
+//	/blog		list of all posts
 func endpoint() {
 	router := mux.NewRouter()
 	r := router.Host("{domain:pleskac.org|www.pleskac.org|localhost}").Subrouter()
