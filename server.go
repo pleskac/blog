@@ -19,7 +19,7 @@ type Picture struct {
 }
 
 type Post struct {
-	Id         string
+	Id         int
 	Post_title string
 }
 
@@ -90,8 +90,8 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
-		fmt.Println(row.Str(0))
-		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
+		fmt.Println(row.Str(1))
+		allPosts = append(allPosts, Post{row.Int(0), row.Str(1)})
 	}
 
 	return allPosts
