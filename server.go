@@ -19,7 +19,7 @@ type Picture struct {
 }
 
 type Post struct {
-	Id         int
+	Id         string
 	Post_title string
 }
 
@@ -58,10 +58,10 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "http://pleskac.org")
 
 	output := getAllPosts()
-	fmt.Println(output)
-	test := fmt.Sprint(output)
+	fmt.Println(output) //THIS WORKS
+
 	enc := json.NewEncoder(w)
-	enc.Encode(test)
+	enc.Encode(output) //WHY WONT YOU RETURN???
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
@@ -89,8 +89,7 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
-		title := "\"" + row.Str(1) + "\""
-		allPosts = append(allPosts, Post{row.Int(0), title})
+		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
 	}
 
 	return allPosts
