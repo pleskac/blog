@@ -81,14 +81,14 @@ func getAllPosts() []Post {
 	db := Connect()
 	defer db.Close()
 	query := "SELECT id,post_title FROM wp_posts WHERE post_type = 'post'"
-
+	fmt.Println(query)
 	rows, _, err := db.Query(query)
 	if err != nil {
 		panic(err)
 	}
 
 	var allPosts []Post
-
+	fmt.Println(rows)
 	for _, row := range rows {
 		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
 	}
