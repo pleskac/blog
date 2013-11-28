@@ -59,7 +59,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	output := getAllPosts()
 	fmt.Println(output)
-	test := "why don't you work!"
+	test := fmt.Sprint(output)
 	enc := json.NewEncoder(w)
 	enc.Encode(test)
 }
