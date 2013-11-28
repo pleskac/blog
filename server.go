@@ -58,6 +58,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "http://pleskac.org")
 
 	output := getAllPosts()
+	fmt.Println(output)
 
 	enc := json.NewEncoder(w)
 	enc.Encode(output)
@@ -81,7 +82,7 @@ func getAllPosts() []Post {
 	db := Connect()
 	defer db.Close()
 	query := "SELECT id,post_title FROM wp_posts WHERE post_type = 'post'"
-	fmt.Println(query)
+
 	rows, _, err := db.Query(query)
 	if err != nil {
 		panic(err)
@@ -90,7 +91,6 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
-		fmt.Println(row.Str(1))
 		allPosts = append(allPosts, Post{row.Int(0), row.Str(1)})
 	}
 
