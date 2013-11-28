@@ -88,8 +88,9 @@ func getAllPosts() []Post {
 	}
 
 	var allPosts []Post
-	fmt.Println(rows)
+
 	for _, row := range rows {
+		fmt.Println(row.Str(0))
 		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
 	}
 
