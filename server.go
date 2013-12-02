@@ -94,7 +94,7 @@ func getAllPosts() []Post {
 	for _, row := range rows {
 		title := row.Str(1)
 		if strings.Contains(row.Str(1), "\x96") {
-			strings.Replace(title, "\x96", "\x20\x13", -1)
+			strings.Replace(title, "\x96", "|", -1)
 			fmt.Println("New title:", title)
 		}
 		allPosts = append(allPosts, Post{row.Str(0), title})
