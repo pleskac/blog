@@ -9,6 +9,7 @@ import (
 	_ "github.com/ziutek/mymysql/native"
 	_ "log"
 	"net/http"
+	"strings"
 )
 
 type Picture struct {
@@ -90,6 +91,11 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
+		if strings.Contains(row.Str(1), `–`) {
+			fmt.Println("Contains literally –")
+		} else if strings.Contains(row.Str(1), `\x96`) {
+			fmt.Println("contains the x96 variety")
+		}
 		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
 	}
 
