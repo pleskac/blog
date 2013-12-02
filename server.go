@@ -91,10 +91,12 @@ func getAllPosts() []Post {
 	var allPosts []Post
 
 	for _, row := range rows {
-		if strings.Contains(row.Str(1), `–`) {
-			fmt.Println("Contains literally –")
-		} else if strings.Contains(row.Str(1), `\x96`) {
-			fmt.Println("contains the x96 variety")
+		if strings.Contains(row.Str(1), "–") {
+			fmt.Println("Contains literally –", row.Str(1))
+		} else if strings.Contains(row.Str(1), "\x96") {
+			fmt.Println("contains the x96 variety", row.Str(1))
+		} else if strings.Contains(row.Str(1), "x96") {
+			fmt.Println("second x96", row.Str(1))
 		}
 		allPosts = append(allPosts, Post{row.Str(0), row.Str(1)})
 	}
