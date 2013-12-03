@@ -10,6 +10,7 @@ import (
 	_ "github.com/ziutek/mymysql/native"
 	_ "log"
 	"net/http"
+	"strings"
 	_ "unicode/utf8"
 )
 
@@ -147,5 +148,5 @@ func fromWindows1252(str string) string {
 		buf.WriteRune(r)
 	}
 
-	return string(buf.Bytes())
+	return strings.Trim(string(buf.Bytes()), "\u0000")
 }
