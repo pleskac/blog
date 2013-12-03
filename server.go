@@ -52,7 +52,7 @@ func endpoint() {
 	r := router.Host("{domain:pleskac.org|www.pleskac.org|localhost}").Subrouter()
 	r.HandleFunc("/blog", HomeHandler)
 	r.HandleFunc("/{"+postId+":[0-9]+}", PostHandler)
-	fmt.Println("Router:", r)
+
 	http.ListenAndServe(":1337", r)
 }
 
@@ -60,11 +60,13 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "http://pleskac.org")
 
 	output := getAllPosts()
-	fmt.Println(output) //THIS WORKS
 
 	enc := json.NewEncoder(w)
-	err := enc.Encode(output) //WHY WONT YOU RETURN???
-	fmt.Println(err)
+	err := enc.Encode(output)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
