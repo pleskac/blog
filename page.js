@@ -6,12 +6,12 @@ $(document).ready(function () {
 	        function(data){
 		image_urls = JSON.parse(data);
 		jQuery.each(image_urls, function(){
-			var imageURL = resizeToLarge(this.guid, this.meta_value);
+			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
 			var height = getImageHeight(imageURL);
 			var imageString = '<div class="caption" style="height:' + height + 'px">';
 			imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
-			if(this.post_excerpt){
-				imageString += '<span>' + this.post_excerpt + '</span>';
+			if(this.Post_excerpt){
+				imageString += '<span>' + this.Post_excerpt + '</span>';
 			}
 			imageString += '</div>';
 			$('#post_content').append(imageString);
