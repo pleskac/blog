@@ -24,7 +24,7 @@ function getURL(url){
 	var pattern = new RegExp('([0-9]+)');
 	var match = url.toString().match(pattern);
 	if(match != null){
-		return 'http://pleskac.org:1337/blog/' + match[0];
+		return 'http://pleskac.org:1337/' + match[0];
 	}
 	return '';
 }
