@@ -8,12 +8,12 @@ $(document).ready(function () {
 		jQuery.each(image_urls, function(){
 			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
 			var height = getImageHeight(imageURL);
-			var imageString = '<p class="caption" style="height:' + height + 'px">';
+			var imageString = '<div class="caption" style="height:' + height + 'px">';
 			imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
 			if(this.Post_excerpt){
 				imageString += '<span>' + this.Post_excerpt + '</span>';
 			}
-			imageString += '</p>';
+			imageString += '</div>';
 			$('#post_content').append(imageString);
 		});
 	});
