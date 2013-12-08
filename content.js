@@ -6,11 +6,12 @@ $(document).ready(function () {
 	                function(data){
 				posts = JSON.parse(data).reverse();
 				jQuery.each(posts, function(){
-					var link = '<a href="http://pleskac.org:1337/' + this.Id + '" >' + this.Post_title + '</a><br />';
+					var link = '<a href="http://pleskac.org:1337/blog/' + this.Id + '" >' + this.Post_title + '</a><br />';
 					$('#post_content').append(link);
 				});
 		});
 	}else{
+		//move to page.js??
 		var url = getURL(pathname)
 		 jQuery.ajax(url).done(
 	                function(data){
