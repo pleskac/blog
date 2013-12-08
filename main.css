@@ -57,9 +57,10 @@ div.header{
 	text-align: center;
 }
 
-div.content{
+p.content{
 	padding-top:20px;
 	display: block;
+	margin: 0 auto;
 	margin-right:auto;
 	margin-left:auto;
 	max-width:1024px;
@@ -68,15 +69,15 @@ div.content{
 div.clear { 
   clear: both; 
 }
-div.caption { 
+p.caption { 
   display: block !important; 
   position: relative !important;
-	padding-top:2px;
+  padding-top:2px;
 }
-div.caption img { 
+p.caption img { 
   position: absolute !important
 }
-div.caption span { 
+p.caption span { 
   background: #000; 
   background: rgba(0,0,0,0.8); 
   color: white !important; 
@@ -87,7 +88,7 @@ div.caption span {
   bottom: 0 !important; 
   left: 0 !important; 
 }
-div.caption span big {
+p.caption span big {
   font-weight: bold; 
 }
 
