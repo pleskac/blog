@@ -75,16 +75,16 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	post := vars[postId]
 
-	top := "<head>"
-	+"<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">"
-	+"<title>dog food</title>"
-	+"<link rel=\"stylesheet\" href=\"main.css\">"
-	+"<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>"
-	+"<script type=\"text/javascript\" src=\"captions.js\"></script>"
-	+"<script type=\"text/javascript\" src=\"content.js\"></script>"
-	+"<style type=\"text/css\"></style></head>"
+	top := `<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>dog food</title>
+	<link rel="stylesheet" href="main.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="captions.js"></script>
+	<script type="text/javascript" src="content.js"></script>
+	<style type="text/css"></style></head>`
 
-	fmt.Fprintf(w, "<body>%s<h1>%s</h1></body>", top, post)
+	fmt.Fprintf(w, "%s<body><h1>%s</h1></body>", top, post)
 }
 
 func PostDataHandler(w http.ResponseWriter, r *http.Request) {
