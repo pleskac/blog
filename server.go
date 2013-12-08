@@ -80,11 +80,10 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	<title>dog food</title>
 	<link rel="stylesheet" href="http://pleskac.org/blog/main.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://pleskac.org/blog/captions.js"></script>
-	<script type="text/javascript" src="http://pleskac.org/blog/content.js"></script>
+	<script type="text/javascript" src="http://pleskac.org/blog/page.js"></script>
 	<style type="text/css"></style></head>`
 
-	fmt.Fprintf(w, "%s<body><h1>%s</h1></body>", top, post)
+	fmt.Fprintf(w, "%s<body><h1>%s</h1><div id=\"post_content\"></div></body>", top, post)
 }
 
 func PostDataHandler(w http.ResponseWriter, r *http.Request) {
