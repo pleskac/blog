@@ -44,3 +44,27 @@ h1{
         font-size: 900%;
         
 }
+
+div.header{
+        padding:0px;
+        overflow:hidden;
+        height:150px;
+        width: 100%;
+        background-image: url(bg_bw.jpg);
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        text-align: center;
+}
+
+div.content{
+        padding-top:20px;
+        display: block;
+        margin-right:auto;
+        margin-left:auto;
+        max-width:1024px;
+}
+
+div.clear { 
+  clear: both; 
+}
