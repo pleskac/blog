@@ -83,7 +83,9 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	<script type="text/javascript" src="http://pleskac.org/blog/page.js"></script>
 	<style type="text/css"></style></head>`
 
-	fmt.Fprintf(w, "%s<body><h1>%s</h1><div id=\"post_content\"></div></body>", top, post)
+	postTitle := GetPostTitle(post)
+
+	fmt.Fprintf(w, "%s<body><h1>%s</h1><div id=\"post_content\"></div></body>", top, postTitle)
 }
 
 func PostDataHandler(w http.ResponseWriter, r *http.Request) {
@@ -165,4 +167,22 @@ func fromWindows1252(str string) string {
 	}
 
 	return strings.Trim(string(buf.Bytes()), "\u0000")
+}
+
+func GetPostTitle(id string) string {
+	db := Connect()
+	defer db.Close()
+
+	query := "select post_title from wp_posts where id = " + id
+
+	rows, _, err := db.Query(query)
+	if err != nil {
+		panic(err)
+	}
+
+	if len(rows) == 1 {
+		return rows[0].Str(0)
+	}
+
+	return "Post not found. How did you do this? Email me."
 }
