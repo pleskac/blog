@@ -16,8 +16,8 @@ $(document).ready(function () {
 		jQuery.each(post.Pictures, function(){
 			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
 
-			var imageString += '<img src="' + imageURL + '" data-caption="' + this.Post_excerpt + '" />';
-			
+			var imageString = '<img src="' + imageURL + '" data-caption="' + this.Post_excerpt + '" />';
+
 			$('#post_content').append(imageString);
 		});
 	});
