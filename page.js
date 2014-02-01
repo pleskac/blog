@@ -4,8 +4,8 @@ $(document).ready(function () {
 
 	jQuery.ajax(url).done(
 	        function(data){
-		image_urls = JSON.parse(data);
-		jQuery.each(image_urls, function(){
+		post = JSON.parse(data);
+		jQuery.each(post.Pictures, function(){
 			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
 			var height = getImageHeight(imageURL);
 			var imageString = '<div class="caption" style="height:' + height + 'px">';
