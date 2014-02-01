@@ -39,7 +39,7 @@ function resizeToLarge(uri, jibberish){
 	if(match != null){
 		var start = match.index + 6;
 		var end = match.index + match[0].length;
-		var imageName = (jibberish.toString().substring(start,end));
+		var imageName = (jibberish.toString().substring(start,end - 1));
 		uri = uri.replace(/\/([^\/]*)$/,'/');
 		return uri + imageName;
 	}
