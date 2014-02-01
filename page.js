@@ -1,3 +1,7 @@
+$(window).load(function() {
+    $('img.caption').captionjs();
+});
+
 $(document).ready(function () {
 	var pathname = window.location.pathname;
 	var url = getURL(pathname)
@@ -11,13 +15,9 @@ $(document).ready(function () {
 		// Next, append the photos
 		jQuery.each(post.Pictures, function(){
 			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
-			var height = getImageHeight(imageURL);
-			var imageString = '<div class="caption" style="height:' + height + 'px">';
-			imageString += '<img class="dynamic_image" src="' + imageURL + '" />';
-			if(this.Post_excerpt){
-				imageString += '<span>' + this.Post_excerpt + '</span>';
-			}
-			imageString += '</div>';
+
+			var imageString += '<img src="' + imageURL + '" data-caption="' + this.Post_excerpt + '" />';
+			
 			$('#post_content').append(imageString);
 		});
 	});

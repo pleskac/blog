@@ -86,8 +86,10 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<title>dog food</title>
 	<link rel="stylesheet" href="http://pleskac.org/blog/main.css">
+	<link rel="stylesheet" href="http://pleskac.org/blog/captionjs-master/captionjs.css"/>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://pleskac.org/blog/page.js"></script>
+	<script type="text/javascript" src="http://pleskac.org/blog/captionjs-master/jquery.caption.js"></script>
 	<style type="text/css"></style></head>`
 
 	postTitle := GetPostTitle(post)
