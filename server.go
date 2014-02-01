@@ -22,6 +22,13 @@ type Picture struct {
 }
 
 type Post struct {
+	Id       string
+	Title    string
+	Content  string
+	Pictures []Picture
+}
+
+type PostStub struct {
 	Id         string
 	Post_title string
 }
@@ -94,13 +101,23 @@ func PostDataHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	post := vars[postId]
 
-	output := getPictures(post)
+	pictures := getPictures(post)
+
+	title, content := GetPostData(post)
+
+	//Id, title, content, pictures
+	thePost := Post{
+		Id:       post,
+		Title:    title,
+		Content:  content,
+		Pictures: pictures,
+	}
 
 	enc := json.NewEncoder(w)
-	enc.Encode(output)
+	enc.Encode(thePost)
 }
 
-func getAllPosts() []Post {
+func getAllPosts() []PostStub {
 	db := Connect()
 	defer db.Close()
 	query := "SELECT id,post_title FROM wp_posts WHERE post_type = 'post'"
@@ -110,12 +127,12 @@ func getAllPosts() []Post {
 		panic(err)
 	}
 
-	var allPosts []Post
+	var allPosts []PostStub
 
 	for _, row := range rows {
 		title := row.Str(1)
 
-		allPosts = append(allPosts, Post{row.Str(0), fromWindows1252(title)})
+		allPosts = append(allPosts, PostStub{row.Str(0), fromWindows1252(title)})
 	}
 
 	return allPosts
@@ -167,6 +184,24 @@ func fromWindows1252(str string) string {
 	}
 
 	return strings.Trim(string(buf.Bytes()), "\u0000")
+}
+
+func GetPostData(id string) (string, string) {
+	db := Connect()
+	defer db.Close()
+
+	query := "select post_title,post_content from wp_posts where id = " + id
+
+	rows, _, err := db.Query(query)
+	if err != nil {
+		panic(err)
+	}
+
+	if len(rows) == 1 {
+		return rows[0].Str(0), rows[0].Str(1)
+	}
+
+	return "Post not found. How did you do this? Email me.", "This is where the content should go."
 }
 
 func GetPostTitle(id string) string {
