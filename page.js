@@ -5,6 +5,10 @@ $(document).ready(function () {
 	jQuery.ajax(url).done(
 	        function(data){
 		post = JSON.parse(data);
+		// First append the text
+		$('#post_content').append(post.Content);
+
+		// Next, append the photos
 		jQuery.each(post.Pictures, function(){
 			var imageURL = resizeToLarge(this.Guid, this.Meta_value);
 			var height = getImageHeight(imageURL);
