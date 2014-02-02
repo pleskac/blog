@@ -1,7 +1,3 @@
-$(window).load(function() {
-    $('img.caption').captionjs();
-});
-
 $(document).ready(function () {
 	var pathname = window.location.pathname;
 	var url = getURL(pathname)
@@ -20,6 +16,8 @@ $(document).ready(function () {
 
 			$('#post_content').append(imageString);
 		});
+
+		$('img.caption').captionjs();
 	});
 });
 
