@@ -1,10 +1,5 @@
 $(window).load(function() {
-    $('img.caption').captionjs({
-        'class_name' : 'captionjs',  // Class name assigned to each <figure>
-        'schema'     : true,         // Use schema.org markup (i.e., itemtype, itemprop)
-        'mode'       : 'animated',    // default | static | animated | hide
-        'debug_mode' : true         // Output debug info to the JS console
-    });
+
 });
 
 $(document).ready(function () {
@@ -25,6 +20,14 @@ $(document).ready(function () {
 
 			$('#post_content').append(imageString);
 		});
+
+		// we need to wait until the <img> are inserted
+		$('img.caption').captionjs({
+        	'class_name' : 'captionjs',  // Class name assigned to each <figure>
+        	'schema'     : true,         // Use schema.org markup (i.e., itemtype, itemprop)
+        	'mode'       : 'animated',    // default | static | animated | hide
+        	'debug_mode' : true         // Output debug info to the JS console
+    	});
 	});
 });
 
